@@ -50,42 +50,46 @@ Each group is independent, and none is a modification of another.
 
 The images will then be passed to YOLO to evaluate its detection performance.
 
-- Images recognized by YOLO will be classified into group (X_i).
-- Images not recognized by YOLO will be classified into group (Y_i).
+- Images recognized by YOLO will be classified into group \(X_i\).
+- Images not recognized by YOLO will be classified into group \(Y_i\).
 
-Here, (i) represents the index of the group being tested.
+Here, \(i\) represents the index of the group being tested.
 
 ## Testing Humans
 
 A Google Form will be created to test human participants using images from all five groups (0–4) and determine whether they can identify the objects.
 
-- Images identified correctly by at least 75% of human participants will be classified into group (H_i).
-- Images not identified correctly by at least 75% of human participants will be classified into group (F_i).
+- Images identified correctly by at least 75% of human participants will be classified into group \(H_i\).
+- Images not identified correctly by at least 75% of human participants will be classified into group \(F_i\).
 
 ## Mixing Results Through Intersection and Union
 
-- Images not identified by humans but recognized by YOLO will be classified into group (\beta_i) (the intersection of (F_i) and (X_i)).
-- Images identified by most humans but not recognized by YOLO will be classified into group (\alpha_i) (the intersection of (H_i) and (Y_i)).
-- Images identified by most humans and recognized by YOLO will be classified into group (\omega_i) (the intersection of (H_i) and (X_i)).
-- Images not identified by either humans or YOLO will be classified into group (\delta_i) (the intersection of (F_i) and (Y_i)).
+- Images not identified by humans but recognized by YOLO will be classified into group \(\beta_i\) (the intersection of \(F_i\) and \(X_i\)).
+- Images identified by most humans but not recognized by YOLO will be classified into group \(\alpha_i\) (the intersection of \(H_i\) and \(Y_i\)).
+- Images identified by most humans and recognized by YOLO will be classified into group \(\omega_i\) (the intersection of \(H_i\) and \(X_i\)).
+- Images not identified by either humans or YOLO will be classified into group \(\delta_i\) (the intersection of \(F_i\) and \(Y_i\)).
 
 The thresholds for YOLO will be a confidence score of at least 55% and an IoU of at least 50%. The correct class must also be predicted.
 
 Finally, we are going to compare Alpha Rates between each group.
 
-[\
-\text{Alpha Rate}\_i =\
-\frac{|\alpha_i|}{|G_i|}\times100\
-]
+**Alpha Rate:**
 
-This represents the percentage of images in group (G_i) that are correctly recognized by humans but not correctly recognized by YOLO.
+$$
+\text{Alpha Rate}_i =
+\frac{|\alpha_i|}{|G_i|} \times 100
+$$
+
+This represents the percentage of images in group \(G_i\) that are correctly recognized by humans but not correctly recognized by YOLO.
 
 There is also the Human Recognition Rate:
 
-[\
-\text{Human Recognition Rate}\_i =\
-\frac{\text{Number of images in } H_i}{|G_i|}\times100\
-]
+**Human Recognition Rate:**
+
+$$
+\text{Human Recognition Rate}_i =
+\frac{|H_i|}{|G_i|} \times 100
+$$
 
 This represents the percentage of images correctly recognized by humans.
 
@@ -93,12 +97,14 @@ Here, we are going to determine which modification is best for making images amb
 
 We also need to calculate the YOLO Detection Rate:
 
-[\
-\text{YOLO Detection Rate}\_i =\
-\frac{|X_i|}{|G_i|}\times100\
-]
+**YOLO Detection Rate:**
 
-Here, (G_i) represents the complete image group being evaluated.
+$$
+\text{YOLO Detection Rate}_i =
+\frac{|X_i|}{|G_i|} \times 100
+$$
+
+Here, \(G_i\) represents the complete image group being evaluated.
 
 ## Generating a New CAPTCHA Using Only Alpha Samples
 
